@@ -19,7 +19,7 @@ def speak(text):
 
 def get_openrouter_response(prompt):
     headers = {
-        "Authorization": "Bearer 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",  
+        "Authorization": "Bearer",  
         "Content-Type": "application/json"
     }
 
@@ -33,7 +33,7 @@ def get_openrouter_response(prompt):
     }
 
     try:
-        response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=data)
+        response = requests.post("", headers=headers, json=data)
         if response.status_code == 200:
             reply = response.json()['choices'][0]['message']['content']
             return reply
@@ -58,7 +58,7 @@ def processCommand(command):
             speak("Please say the name of the song after 'play'")
 
     elif "news" in command or "headlines" in command:
-        r = requests.get("https://newsapi.org/v2/top-headlines?country=us&apiKey=5fa4071e035a4242bc0000ff604fc899")
+        r = requests.get("")
         if r.status_code == 200:
             data = r.json()
             articles = data.get('articles', [])[:5]
